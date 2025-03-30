@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/meubanco
+    networks:
+      - meuapp
+
+  frontend:
+    build: ./frontend-react
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - meuapp
+
+  mongodb:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - meuapp
+
+networks:
+  meuapp:
+
+volumes:
+  mongo_data:

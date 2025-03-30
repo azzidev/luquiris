@@ -1,0 +1,20 @@
+# Usa a imagem oficial do Go
+FROM golang:1.23
+
+# Define o diretório de trabalho no contêiner
+WORKDIR /app
+
+# Copia os arquivos do backend para o contêiner
+COPY . .
+
+# Baixa as dependências
+RUN go mod tidy
+
+# Compila a aplicação
+RUN go build -o server .
+
+# Expõe a porta usada pelo backend
+EXPOSE 8080
+
+# Comando para rodar o backend
+CMD ["./server"]

@@ -1,0 +1,23 @@
+# Usa a imagem do Node.js
+FROM node:18-alpine
+
+# Define o diretório de trabalho no contêiner
+WORKDIR /app
+
+# Copia os arquivos do frontend
+COPY package.json package-lock.json ./
+RUN npm install
+
+COPY . .
+
+# Compila o frontend
+RUN npm run build
+
+# Usa o servidor Nginx para servir o React
+FROM nginx:alpine
+COPY --from=0 /app/build /usr/share/nginx/html
+
+# Expõe a porta 80 para o React
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
