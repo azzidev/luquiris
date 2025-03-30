@@ -1,0 +1,38 @@
+# Dependências do Node.js
+node_modules/
+
+# Arquivos de build (React)
+build/
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Arquivos temporários e de cache
+*.tmp
+*.swp
+
+# Configurações locais
+.env
+
+# Arquivos específicos de sistemas operacionais
+.DS_Store
+Thumbs.db
+
+# Arquivos específicos de IDEs
+.vscode/
+.idea/
+
+# Arquivos do Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/bin/
+/obj/
+
+# Arquivos do Docker
+docker-compose.override.yml
+Dockerfile.dev
